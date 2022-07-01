@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Lista de Contatos</title>
+    <link rel='shortcut icon' type='image/x-icon' href='assets/favicon.png' />
+    <link rel="stylesheet" href="assets/style.css" />
+
+</head>
+
+<body>
+
+    <!-- Container Principal + Id do Vue -->
+    <div class="container" id="app">
+
+        <!-- Linha 1 -->
+        <div class="row mt-5">
+
+            <!-- Coluna 1 [Título] ==================================-->
+            <div class="col-12 border-bottom mb-5 d-flex justify-content-between align-items-center">
+                <!-- Mostra a variável criada no Data -->
+                <h2 v-bind:title="titulo" class="Titulo Cor_Vue">{{name}}</h2>
+                <p>By {{autora}}</p>
+                <p>{{QuantidadeContatos}}</p>                
+            </div>
+
+            <!-- Coluna 2 [Formulário] =============================-->
+            <div id="Formulario" class="col-6" autocomplete="off">
+
+                <form action="">
+                    <div class="form-group mr-1">
+                        <label>Nome</label>
+                        <input v-model="ObjetoContato.name" type="text" class="form-control" placeholder="Nome Completo...">
+                    </div>
+
+                    <div class="form-group mr-1">
+                        <label>E-mail</label>
+                        <input v-model="ObjetoContato.email" type="email" class="form-control" placeholder="Seu melhor email...">
+                    </div>
+
+                    <div class="form-group mr-1 mb-4">
+                        <label>Contato</label>
+                        <input v-model="ObjetoContato.phone" type="phone" class="form-control" placeholder="Telefone/Celular">
+                    </div>
+
+                    <div class="form-group ml-1">
+                        <button v-if="!Editando" class="btn btn-lg btn-rounded Background_Vue" v-on:click.prevent="SalvarContato(ObjetoContato)">Criar Contato</button>
+                        <button v-if="Editando" class="btn btn-lg btn-rounded Cor_Editar" v-on:click.prevent="AtualizarContato(ObjetoContato)">Atualizar Contato</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Coluna 3 [Cards] ====================================================================================================================================-->
+            <div class="col-6 border-left">
+                
+                <!-- Se tiver pelo menos um contato registrado... ------------------------------------------------------------------------------------------------------>
+                <div class="contact" v-if="ListaContatos.length">
+                        
+                    <!-- Cria um loop. Cada registro novo terá um card só seu -->
+                    <div class="col-12 mb-2" v-for="ObjetoContato in ListaContatos">
+
+                        <!-- Cards. Mostra os card apenas se tiver algum registro -->
+                        <div class="card">
+
+                            <div class="card-body">
+
+                                <!-- O Card recebe o nome -->
+                                <h5 class="card-title">{{ObjetoContato.name}}</h5>
+                                <!-- O Card recebe email e telefone -->
+                                <p class="card-text">{{ObjetoContato.email}}, {{ObjetoContato.phone}}</p>
+                                <!-- Botões do Card -->
+                                <a href="#" class="btn btn-sm Cor_Editar" @click.prevent="EditarContato(ObjetoContato)">EDITAR</a>
+                                <a href="#" class="btn btn-sm Cor_Deletar" @click.prevent="RemoverContato(ObjetoContato.id)">DELETAR</a>
+                            
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- Se não tiver nenhum contato --------------------------------------------------------------------------------------------------------->
+                <div v-else><p>Nenhum Contato Registrado!</p></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Importar Vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    
+    <!-- Instanciar o Vue.js-->
+    <script src="assets/script.js"></script>
+</body>
+</html>

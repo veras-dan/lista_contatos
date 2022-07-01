@@ -1,0 +1,52 @@
+body{
+    color:#848181;
+}
+
+input{
+    color:#9f8f8f !important;
+}
+
+::placeholder {
+    color:#b7b6b6 !important;
+}
+
+.Titulo{
+    margin-bottom: 20px;
+}
+
+.card-body{
+    width: 107%;
+}
+
+.Cor_Editar{
+    background-color: #3065b9;
+    color:white;
+    margin-right: 5px;
+}
+
+.Cor_Deletar{
+    background-color: #E74C3C;
+    color:white;
+}
+
+.Cor_Editar:hover, .Cor_Deletar:hover{
+    color:white;
+}
+
+
+#Formulario{
+    padding-right: 25px;
+}
+
+.Cor_Vue{
+    color: #581097;
+}
+
+.Background_Vue{
+    background-color:  #581097;
+    color:white;
+}
+
+.Background_Vue:hover{
+    color:white;
+}
